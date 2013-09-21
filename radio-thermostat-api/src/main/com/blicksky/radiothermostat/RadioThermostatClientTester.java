@@ -12,7 +12,7 @@ public class RadioThermostatClientTester {
 			final RadioThermostatClient thermostatClient = new RadioThermostatClient( httpClient );
 			
 			ThermostatState state = thermostatClient.getThermostatState("10.10.10.1");
-			System.out.println("Current Temp: " + state.getCurrentTemperature() );
+			System.out.println("Current Temperature: " + state.getCurrentTemperature() );
 			
 			String model = thermostatClient.getThermostatModel("10.10.10.1");
 			System.out.println(model);
