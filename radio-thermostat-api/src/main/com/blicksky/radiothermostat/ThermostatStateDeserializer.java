@@ -33,11 +33,6 @@ public class ThermostatStateDeserializer {
 			super( ThermostatState.class, PROPERTY_TRANSLATIONS );
 		}
 		
-		// translate thermostat days (0-indexed starting at Mon) to Java Calendar days (1-indexed starting at Sun)
-		private int convertToCalendarDayOfWeek( final int thermostatResponseDayOfWeek ) {
-			return ( ( thermostatResponseDayOfWeek  + 1 ) % 7 ) + 1;
-		}
-		
 		// converts a field container an integer value into a boolean field, where 0 is false and anything else is true 
 		private void convertIntegerFieldToBoolean( final JsonObject jsonObject, final String fieldName ) {
 			if( jsonObject.has(fieldName) ) {
@@ -55,7 +50,7 @@ public class ThermostatStateDeserializer {
 			final JsonObject timeJson = jsonObject.getAsJsonObject("time");
 			final Calendar time = Calendar.getInstance();
 
-			time.set(Calendar.DAY_OF_WEEK, convertToCalendarDayOfWeek( timeJson.get("day").getAsInt() ) ); 
+			time.set(Calendar.DAY_OF_WEEK, DayOfWeekConverter.convertToCalendarDayOfWeek( timeJson.get("day").getAsInt() ) ); 
 			time.set(Calendar.HOUR_OF_DAY, timeJson.get("hour").getAsInt());
 			time.set(Calendar.MINUTE, timeJson.get("minute").getAsInt());
 			time.set(Calendar.SECOND, 0);

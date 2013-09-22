@@ -17,4 +17,8 @@ public class Constants {
 	public enum FanOperatingState implements OrdinalBasedEnum {
 		Off, On;
 	}
+	
+	public enum ThermostatProgramMode {
+		Heat, Cool
+	}
 }
