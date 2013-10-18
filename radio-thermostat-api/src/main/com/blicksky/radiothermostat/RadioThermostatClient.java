@@ -9,6 +9,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.blicksky.radiothermostat.Constants.ThermostatProgramMode;
 import com.google.gson.Gson;
@@ -30,6 +31,10 @@ public class RadioThermostatClient {
 	
 	private class ThermostatModelResponse {
 		public String model;
+	}
+	
+	public RadioThermostatClient() {
+		this( new DefaultHttpClient() );
 	}
 	
 	public RadioThermostatClient( final HttpClient httpClient ) {

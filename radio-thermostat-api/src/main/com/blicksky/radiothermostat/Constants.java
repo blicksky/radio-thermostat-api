@@ -3,22 +3,22 @@ package com.blicksky.radiothermostat;
 public class Constants {
 	
 	public enum ThermostatOperatingMode implements OrdinalBasedEnum {
-		Off, Heat, Cool, Auto;
+		OFF, HEAT, COOL, AUTO;
 	}
 	
 	public enum HVACOperatingState implements OrdinalBasedEnum {
-		Off, Heat, cool;
+		OFF, HEAT, COOL;
 	}
 	
 	public enum FanOperatingMode implements OrdinalBasedEnum {
-		Auto, AutoCirculate, On;
+		Auto, AUTO_CIRCULATE, ON;
 	}
 	
 	public enum FanOperatingState implements OrdinalBasedEnum {
-		Off, On;
+		OFF, ON;
 	}
 	
 	public enum ThermostatProgramMode {
-		Heat, Cool
+		HEAT, COOL
 	}
 }

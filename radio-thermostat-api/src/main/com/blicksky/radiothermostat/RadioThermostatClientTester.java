@@ -1,19 +1,14 @@
 package com.blicksky.radiothermostat;
 
-import java.util.Calendar;
-
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import com.blicksky.radiothermostat.Constants.ThermostatProgramMode;
 
 public class RadioThermostatClientTester {
 	
 	public static void main( String[] args ) {
 	
-		final DefaultHttpClient httpClient = new DefaultHttpClient();
-	
-		try {
-			final RadioThermostatClient thermostatClient = new RadioThermostatClient( httpClient );
+		/*
+		{
+			final RadioThermostatClient thermostatClient = new RadioThermostatClient();
 			
 			ThermostatState state = thermostatClient.getThermostatState("10.10.10.1");
 			System.out.println("Current Temperature: " + state.getCurrentTemperature() );
@@ -27,8 +22,20 @@ public class RadioThermostatClientTester {
 			String weekProgram = thermostatClient.getThermostatProgram("10.10.10.1", ThermostatProgramMode.Heat);
 			System.out.println("Week's Program: " + weekProgram);
 		}
-		finally {
-			httpClient.getConnectionManager().shutdown();
+		*/
+		
+		
+		{
+			FeignRadioThermostatClient client = new FeignRadioThermostatClient("10.10.10.1");
+			
+			ThermostatState state = client.getThermostatState();
+			System.out.println("Current Temperature: " + state.getCurrentTemperature() );
+			
+			String model = client.getThermostatModel();
+			System.out.println("Model: " + model);
+			
+			String weekProgram = client.getThermostatProgram( ThermostatProgramMode.HEAT );
+			System.out.println("Week's Program: " + weekProgram);
 		}
 	}
 }
